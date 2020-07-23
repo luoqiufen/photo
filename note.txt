@@ -33,3 +33,13 @@
 
 视图中的路径按照设置的根目录去查找
 服务器端的js文件的路径按照启动文件的所在路径去查找
+
+
+app.js 服务器启动文件,处理请求
+
+views/ 
+    error.ejs 错误页面
+    index.ejs 相册主页
+    create.ejs 新建相册
+    upload.ejs 上传照片
+    show.ejs 显示相册照片
