@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-07-22 16:20:52
- * @LastEditTime: 2020-07-28 17:24:43
+ * @LastEditTime: 2020-07-28 20:28:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \photo\route\pic.js
@@ -10,44 +10,30 @@
 const express = require('express');
 const router = express.Router();
 const fd = require('formidable');
+const fs = require('fs');
+const {Pic,Dir} = require('../model/db.js')
+
 const {FAILED, SUCCESS} = require('../status');
 
 // 处理 /pic/show请求,展示某个相册里面的内容
 router.get('/show',function(req,res){
     // 获取请求参数,得到被点击的相册名称
-    var dirName = req.query.dirName;
-    if(!dirName){
-        res.render('error',{errMsg:'获取相册出错'});
-        return;
-    }
-    // dirName = 'uploads/'+dirName
-
-    // 调用file里面的getDirs方法获取里面的内容
-    file.getDirs('uploads/'+dirName, function (err, files) {
-        if (err) {
-            console.log(err);
-            res.render('error', { errMsg: '打开相册失败' });
-            return;
-        }
-        // 成功
-        res.render('show', { pics: files,dirName:dirName });
-    });
+    var dirName = req.query.dirName.trim();
+    Pic.find({dir:dirName},function(err,pics){
+        console.log(err);
+        console.log(pics);
+        res.render('show',{pics:pics})
+    })
 })
 
 // 处理get方式的/pic/upload请求,跳转到上传页面
 router.get('/upload',function(req,res){
     // 在上传图片时需要知道图片传到哪个相册中
     // 获取uploads下所有相册名
-    file.getDirs('uploads/', function (err, dirs) {
-        if (err) {
-            console.log(err);
-            res.render('error', { errMsg: '获取相册出错' });
-            return;
-        }
-        // 获取相册成功,将其传递给上传页面
-        res.render( 'upload',{dirs,dirs});
-    });
-
+    Dir.find({},function(err,dirs){
+        console.log(err);
+        res.render('upload',{dirs:dirs})
+    })
 })
 
 // 处理post方式的/pic/upload请求,上传图片
@@ -69,16 +55,25 @@ router.post('/upload',function(req,res){
         var dirName = fields.dirName;
         // 获取图片对象
         var pic = files.pic;
-        // 调用file处理图片
-        file.rename(dirName,pic,function(err){
-            if(err){
+        // 获取图片名称
+        var name = pic.name;
+        // 旧路径
+        var oldPath = pic.path;
+        // 新路径
+        var newPath = './uploads/'+dirName+'/'+name;
+        fs.rename(oldPath,newPath,function(err){
+            console.log(err);
+            // 保存进数据库
+            var o = new Pic({
+                name:name,
+                dir:dirName
+            })
+            o.save(function(err,product){
                 console.log(err);
-                res.render('error',{errMsg:'上传失败'});
-                return;
-            }
-            // 上传成功,跳转到上传图片的文件夹
-            res.redirect('/pic/show?dirName='+dirName);
-        })
+                console.log(product);
+                res.redirect('/pic/show?dirName='+dirName);
+            })
+        }) 
     })
 })
 

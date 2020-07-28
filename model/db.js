@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-07-28 16:49:26
- * @LastEditTime: 2020-07-28 17:07:01
+ * @LastEditTime: 2020-07-28 19:23:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \photo\model\db.js
@@ -13,7 +13,8 @@ var dirSchema = new mongoose.Schema({
     name:String
 })
 var picSchema = new mongoose.Schema({
-    name:String
+    name:String,
+    dir:String
 })
 // 创建对应的Model
 var Dir = mongoose.model('dir',dirSchema);

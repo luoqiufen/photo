@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-07-23 15:49:25
- * @LastEditTime: 2020-07-23 19:01:31
+ * @LastEditTime: 2020-07-28 20:28:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \photo\views\show.ejs
@@ -54,11 +54,11 @@
             </div>
         </div>
     </nav>
-    <h5><%= dirName%></h5>
-    
+111<%=pics%>
     <div class="pic">
         <% for(var i=0;i<pics.length;i++){ %>
-            <img src="/<%= dirName%>/<%=pics[i] %>">
+            <img src="/<%= pics[i].dir %>/<%=pics[i].name %>">
+            <!-- <h5><%= dir %></h5> -->
         <% } %>
 
     </div>

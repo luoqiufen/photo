@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-07-23 16:40:17
- * @LastEditTime: 2020-07-23 19:03:25
+ * @LastEditTime: 2020-07-28 19:59:28
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \photo\views\uploads.ejs
@@ -69,9 +69,9 @@
         <h2>上传图片</h2>
         <form action="/pic/upload" method="POST" enctype="multipart/form-data">
             <h4>请选择相册: </h4>
-            <select name="dirName" class="form-control">
+            <select name="dir" class="form-control">
                 <% for(var i = 0;i<dirs.length;i++) { %>
-                <option value="<%= dirs[i] %>"><%= dirs[i] %></option>
+                <option value="<%= dirs[i].name %>"><%= dirs[i].name %></option>
                 <% } %>
             </select>
             <br>
