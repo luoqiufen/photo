@@ -18,6 +18,8 @@
     cnpm i silly-datetime --save
     cnpm i rimraf --save
 
+    cnpm i mongoose -S
+
     cnpm i 自动匹配下载package.json中的模块
 
 2.搭建项目结构

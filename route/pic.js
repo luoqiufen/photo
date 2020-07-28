@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-07-22 16:20:52
- * @LastEditTime: 2020-07-23 17:56:52
+ * @LastEditTime: 2020-07-28 17:24:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \photo\route\pic.js
@@ -10,7 +10,6 @@
 const express = require('express');
 const router = express.Router();
 const fd = require('formidable');
-const file = require('../model/file.js');
 const {FAILED, SUCCESS} = require('../status');
 
 // 处理 /pic/show请求,展示某个相册里面的内容

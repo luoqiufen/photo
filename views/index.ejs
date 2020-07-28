@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-07-23 09:26:44
- * @LastEditTime: 2020-07-23 18:47:32
+ * @LastEditTime: 2020-07-28 17:41:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \photo\views\index.ejs
@@ -62,12 +62,13 @@
 
     <div class="container">
         <div class="row">
+            <!-- dirs是一盒对象数组,该对象有name -->
             <% for(var i = 0;i<dirs.length;i++) { %>
             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                 <div class="thumbnail">
-                    <a href="/pic/show?dirName=<%= dirs[i] %>">
+                    <a href="/pic/show?dirName=<%= dirs[i].name %>">
                         <img src="/imgs/dir.png">
-                        <h4 class="caption"><%= dirs[i] %></h4>
+                        <h4 class="caption"><%= dirs[i].name %></h4>
                     </a>
                     <a href="javascript:;" onclick="send(this)">删除</a>
                 </div>
