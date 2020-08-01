@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-07-22 17:21:25
- * @LastEditTime: 2020-07-23 17:24:16
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \photo\model\file.js
- */
 
 //  用于直接操作相册和图片的模板
 const fs = require('fs');

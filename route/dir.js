@@ -41,7 +41,7 @@ router.post('/mkdir',function(req,res){
     var dirName = req.body.dirName;
     // 检查dirName的合法性
     if(!dirName){
-        res.send({status:FAILED,msf:'相册名不合法'});
+        res.send({status:FAILED,msg:'相册名不合法'});
         return;
     }
     // 调用file 的create方法来创建文件夹
@@ -109,4 +109,4 @@ router.get('/delete',function(req,res){
 
 
 // 暴露路由
-module.exports = router
+module.exports = router;
